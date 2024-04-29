@@ -136,7 +136,7 @@ def index():
     xavas_sales = dict(sorted(xavas_sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
     oazis_sales = dict(sorted(oazis_sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
 
-    return render_template('index-new.html', oazis_sales=oazis_sales, xavas_sales=xavas_sales, current_time=interval_time)
+    return render_template('index.html', oazis_sales=oazis_sales, xavas_sales=xavas_sales, current_time=interval_time)
 
 
 def format_currency(value):
