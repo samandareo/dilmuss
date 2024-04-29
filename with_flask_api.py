@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import requests
 import json
+import pytz
 from datetime import datetime
 
 app = Flask(__name__)
@@ -44,8 +45,14 @@ def make_api_request(method,headers, params):
  
 @app.route('/')
 def index():
-    today_date = datetime.now().date()
-    current_time = datetime.now()
+    utc_now = datetime.utcnow()
+    
+    tz = pytz.timezone('Asia/Tashkent')
+    
+    tashkent_time = utc_now.replace(tzinfo=pytz.utc).astimezone(tz)
+    
+    today_date = tashkent_time.date()
+    current_time = tashkent_time.time()
 
     if 9 <= current_time.hour < 23:  # Time between 9 AM and 11 PM
         interval_hour = (current_time.hour - 9) // 2 * 2 + 9  # Calculate closest interval hour within 9AM-11PM
