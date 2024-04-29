@@ -1,0 +1,103 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Roboto&display=swap');
+
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dashboard
+{
+    display: grid;
+    grid-template-columns: 25vw  75vw;
+    /* grid-template-rows: 20vw  80vw; */
+    height: 100vh;
+    width: 100vw;
+}
+
+.dashboard .sidebar
+{
+     display: grid;
+     grid-template-rows: 50% 50%;
+     background-color:black;
+}
+
+
+
+.dashboard .sidebar .logo
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.dashboard .sidebar .time-container
+{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+.dashboard .table-container
+{
+   margin: 50px 20px;
+}
+
+
+
+table {
+    width: 100%;
+    border-collapse: separate; /* This is necessary to apply border-spacing */
+    border-spacing: 20px; /* Adjusts the space between cells */
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    color: black;
+    font-size: 16px;
+    font-family: "Ubuntu", "Helvetica Neue";
+}
+
+th, td {
+    text-align: left;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    height: 80px;
+    padding-left: 50px;/* Adds a border around each cell */
+}
+
+th {
+    background-color: #fff;
+    font-weight: 700;
+}
+
+/* Applying the background colors directly to each cell */
+td {
+    background-color: #fff; 
+    font-weight: 300;
+    font-weight: 500;/* Default white background for cells */
+}
+
+tr:nth-child(odd) td {
+    background-color: #C5C5C5; /* Background color for odd rows */
+}
+
+tr:nth-child(even) td {
+    background-color: #A88A6C; /* Background color for even rows */
+}
+
+tr:hover td {
+    background-color: #f1f1f1; /* Background color on hover */
+}
+
+.time-container
+{
+    font-family: "Quantico", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
