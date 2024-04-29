@@ -53,10 +53,10 @@
 }
 .dashboard .table-container
 {
-   margin: 50px 20px;
-   width: 70vw;
-   grid-column: 2/2;
-   grid-column-end: auto;
+    margin: 50px 20px;
+    width: calc(75vw - 40px); /* Adjusted width to accommodate remaining space after sidebar */
+    grid-column: 2/3; /* Changed grid-column to 2/3 for the main content */
+    grid-column-end: auto;
 }
 
 
