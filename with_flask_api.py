@@ -51,7 +51,7 @@ def index():
     
     tashkent_time = utc_now.replace(tzinfo=pytz.utc).astimezone(tz)
     
-    today_date = tashkent_time.date()
+    today_date = datetime.now().date()
     current_time = tashkent_time.time()
 
     if 9 <= current_time.hour < 23:  # Time between 9 AM and 11 PM
