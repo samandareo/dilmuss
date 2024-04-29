@@ -26,7 +26,7 @@
     width: 25vw;
     height: 100vh;
     display: grid;
-
+    grid-column:1/2;
     grid-template-rows: 50% 50%;
     background-color:black;
 }
@@ -53,8 +53,8 @@
 .dashboard .table-container
 {
     margin: 50px 20px;
-    width: calc(75vw - 40px); /* Adjusted width to accommodate remaining space after sidebar */
-    grid-column: 2/3; /* Changed grid-column to 2/3 for the main content */
+    width: 75vw; /* Adjusted width to accommodate remaining space after sidebar */
+    grid-column: 2/2; /* Changed grid-column to 2/3 for the main content */
     grid-column-end: auto;
 }
 
