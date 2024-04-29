@@ -55,10 +55,9 @@
 }
 .dashboard .table-container
 {
-    margin: 50px 20px;
+    margin: 20px;
     width: 72vw; /* Adjusted width to accommodate remaining space after sidebar */
     grid-column: 2/2; /* Changed grid-column to 2/3 for the main content */
-    grid-column-end: auto;
     float:right;
 }
 
@@ -115,8 +114,7 @@ tr:hover td {
 }
 
 
-
-@media (min-width:368px) and (max-width: 550px) {
+@media only screen and (max-width: 1024px) {
     .dashboard {
         grid-template-columns: 100%;
         /* grid-template-rows: auto; */
@@ -137,16 +135,16 @@ tr:hover td {
     }
 
     table {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     th, td {
-        padding: 8px 10px;
+        padding: 10px 12px;
         height: auto;
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .time-container {
-        font-size: 18px;
+        font-size: 20px;
     }
 }
