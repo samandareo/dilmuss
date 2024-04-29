@@ -116,3 +116,37 @@ tr:hover td {
 
 
 
+@media only screen and (max-width: 768px) {
+    .dashboard {
+        grid-template-columns: 100%;
+        /* grid-template-rows: auto; */
+    }
+
+    .dashboard .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .dashboard .table-container {
+        width: 100%;
+        margin: 20px 0;
+        float: none;
+    }
+
+    table {
+        font-size: 18px;
+    }
+
+    th, td {
+        padding: 8px 10px;
+        height: auto;
+        font-size: 18px;
+    }
+
+    .time-container {
+        font-size: 18px;
+    }
+}
