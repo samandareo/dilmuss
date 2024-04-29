@@ -116,20 +116,20 @@ def index():
 
     for entry in data['seller_stats_by_date']:
         seller_name = entry['seller_name']
-        gross_sales = entry['gross_sales']
+        net_gross_sales = entry['net_gross_sales']
         if seller_name.startswith("XAVAS"):
             plan = xavas_team_plan.get(seller_name, default_plan)
             if seller_name in xavas_sales:
-                xavas_sales[seller_name]['total_sales'] += gross_sales
+                xavas_sales[seller_name]['total_sales'] += net_gross_sales
             else:
-                xavas_sales[seller_name] = {'total_sales': gross_sales, 'plan': plan, 'percentage': 0}
+                xavas_sales[seller_name] = {'total_sales': net_gross_sales, 'plan': plan, 'percentage': 0}
             xavas_sales[seller_name]['percentage'] = (xavas_sales[seller_name]['total_sales'] / plan) * 100
         else:
             plan = default_plan
             if seller_name in oazis_sales:
-                oazis_sales[seller_name]['total_sales'] += gross_sales
+                oazis_sales[seller_name]['total_sales'] += net_gross_sales
             else:
-                oazis_sales[seller_name] = {'total_sales': gross_sales, 'plan': plan, 'percentage': 0}
+                oazis_sales[seller_name] = {'total_sales': net_gross_sales, 'plan': plan, 'percentage': 0}
             oazis_sales[seller_name]['percentage'] = (oazis_sales[seller_name]['total_sales'] / plan) * 100
 
   
