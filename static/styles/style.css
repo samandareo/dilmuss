@@ -23,6 +23,8 @@
 
 .dashboard .sidebar
 {
+    position:fixed;
+    top:0;
     width: 25vw;
     height: 100vh;
     display: grid;
