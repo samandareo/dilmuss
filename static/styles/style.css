@@ -1,4 +1,4 @@
-/*
+
 
 @import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Roboto&display=swap');
 
@@ -17,13 +17,19 @@
     /* grid-template-rows: 20vw  80vw; */
     height: 100vh;
     width: 100vw;
+    overflow-x: hidden;
+    
 }
 
 .dashboard .sidebar
 {
-     display: grid;
-     grid-template-rows: 50% 50%;
-     background-color:black;
+    width: 25vw;
+    height: 100vh;
+    display: grid;
+    position: fixed;
+    top: 0;
+    grid-template-rows: 50% 50%;
+    background-color:black;
 }
 
 
@@ -48,6 +54,8 @@
 .dashboard .table-container
 {
    margin: 50px 20px;
+   grid-column: 2/2;
+
 }
 
 
@@ -101,4 +109,4 @@ tr:hover td {
     font-weight: 700;
     font-style: normal;
 }
-*/
+
