@@ -26,8 +26,7 @@
     width: 25vw;
     height: 100vh;
     display: grid;
-    position: fixed;
-    top: 0;
+
     grid-template-rows: 50% 50%;
     background-color:black;
 }
