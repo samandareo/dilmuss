@@ -144,5 +144,3 @@ def format_currency(value):
 
 app.jinja_env.filters['currency'] = format_currency
 
-if __name__ == "__main__":
-    app.run(debug=True)
