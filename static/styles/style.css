@@ -31,6 +31,7 @@
     grid-column:1/2;
     grid-template-rows: 50% 50%;
     background-color:black;
+    float:left;
 }
 
 
@@ -58,6 +59,7 @@
     width: 75vw; /* Adjusted width to accommodate remaining space after sidebar */
     grid-column: 2/2; /* Changed grid-column to 2/3 for the main content */
     grid-column-end: auto;
+    float:right;
 }
 
 
