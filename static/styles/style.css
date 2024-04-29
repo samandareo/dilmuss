@@ -114,3 +114,28 @@ tr:hover td {
     font-style: normal;
 }
 
+/* Adjusting styles for Smart TVs */
+@media only screen and (min-width: 1280px) and (min-height: 720px) {
+    .dashboard {
+        grid-template-columns: 20vw  80vw; /* Adjusting grid template columns */
+    }
+    .dashboard .sidebar {
+        width: 20vw; /* Adjusting sidebar width */
+    }
+    .dashboard .table-container {
+        width: 76vw; /* Adjusting main content width */
+        margin: 20px 2vw; /* Adjusting margin for main content */
+    }
+    .dashboard .sidebar .time-container {
+        font-size: 30px; /* Adjusting font size for time container */
+    }
+    table {
+        font-size: 24px; /* Adjusting font size for table */
+    }
+    th, td {
+        padding: 12px 10px; /* Adjusting padding for table cells */
+        height: auto; /* Removing fixed height for table cells */
+    }
+}
+
+
