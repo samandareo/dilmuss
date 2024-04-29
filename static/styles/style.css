@@ -116,35 +116,46 @@ tr:hover td {
 
 @media only screen and (max-width: 1024px) {
     .dashboard {
-        grid-template-columns: 100%;
-        /* grid-template-rows: auto; */
+        grid-template-columns: 10vw 90vw;
+
+    }
+
+    .logo {
+        width: 120px;
+        height: 120px;
+    }
+    .logo > img{
+        width: 100%;
     }
 
     .dashboard .sidebar {
-        position: static;
-        width: 100%;
-        height: auto;
-        grid-column: auto;
-        grid-row: auto;
+        position: fixed;
+        top: 0;
+        width: 10vw;
+        height: 100vh;
+        grid-column: 1/2;
+        float: left;
     }
 
     .dashboard .table-container {
-        width: 100%;
-        margin: 20px 0;
-        float: none;
+        width: 90vw;
+        margin: 20px;
+        float: right;
+        font-size: 8px;
     }
 
+
     table {
-        font-size: 20px;
+        font-size: 12px;
     }
 
     th, td {
-        padding: 10px 12px;
+        padding: 8px 10px;
         height: auto;
-        font-size: 20px;
+        font-size: 12px;
     }
 
     .time-container {
-        font-size: 20px;
+        font-size: 12px;
     }
 }
