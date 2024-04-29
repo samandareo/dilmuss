@@ -54,9 +54,9 @@
 .dashboard .table-container
 {
    margin: 50px 20px;
-   width : 75vw;
+   width: 70vw;
    grid-column: 2/2;
-
+   grid-column-end: auto;
 }
 
 
