@@ -1,7 +1,6 @@
 from flask import Flask, render_template
 import requests
 import json
-import pytz
 from datetime import datetime
 
 app = Flask(__name__)
@@ -45,14 +44,8 @@ def make_api_request(method,headers, params):
  
 @app.route('/')
 def index():
-    utc_now = datetime.utcnow()
-    
-    tz = pytz.timezone('Asia/Tashkent')
-    
-    tashkent_time = utc_now.replace(tzinfo=pytz.utc).astimezone(tz)
-    
     today_date = datetime.now().date()
-    current_time = tashkent_time.time()
+    current_time = datetime.now()
 
     if 9 <= current_time.hour < 23:  # Time between 9 AM and 11 PM
         interval_hour = (current_time.hour - 9) // 2 * 2 + 9  # Calculate closest interval hour within 9AM-11PM
@@ -143,7 +136,7 @@ def index():
     xavas_sales = dict(sorted(xavas_sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
     oazis_sales = dict(sorted(oazis_sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
 
-    return render_template('index.html', oazis_sales=oazis_sales, xavas_sales=xavas_sales, current_time=interval_time)
+    return render_template('index-new.html', oazis_sales=oazis_sales, xavas_sales=xavas_sales, current_time=interval_time)
 
 
 def format_currency(value):
@@ -153,4 +146,3 @@ app.jinja_env.filters['currency'] = format_currency
 
 if __name__ == "__main__":
     app.run(debug=True)
-
