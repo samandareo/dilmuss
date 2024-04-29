@@ -56,7 +56,7 @@
 .dashboard .table-container
 {
     margin: 50px 20px;
-    width: 75vw; /* Adjusted width to accommodate remaining space after sidebar */
+    width: 72vw; /* Adjusted width to accommodate remaining space after sidebar */
     grid-column: 2/2; /* Changed grid-column to 2/3 for the main content */
     grid-column-end: auto;
     float:right;
