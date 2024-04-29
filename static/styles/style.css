@@ -116,13 +116,14 @@ tr:hover td {
 
 @media only screen and (max-width: 1024px) {
     .dashboard {
-        grid-template-columns: 10vw 90vw;
+        grid-template-columns: 20vw 80vw;
 
     }
 
     .logo {
-        width: 120px;
-        height: 120px;
+        width: 120px!important;
+        height: 120px!important;
+        margin: auto;
     }
     .logo > img{
         width: 100%;
@@ -131,14 +132,17 @@ tr:hover td {
     .dashboard .sidebar {
         position: fixed;
         top: 0;
-        width: 10vw;
+        width: 20vw;
         height: 100vh;
         grid-column: 1/2;
         float: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .dashboard .table-container {
-        width: 90vw;
+        width: 80vw;
         margin: 20px;
         float: right;
         font-size: 8px;
@@ -149,13 +153,12 @@ tr:hover td {
         font-size: 12px;
     }
 
-    th, td {
-        padding: 8px 10px;
+    td {
         height: auto;
         font-size: 12px;
     }
 
     .time-container {
-        font-size: 12px;
+        font-size: 12px!important;
     }
 }
