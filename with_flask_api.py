@@ -145,4 +145,4 @@ def format_currency(value):
 app.jinja_env.filters['currency'] = format_currency
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
