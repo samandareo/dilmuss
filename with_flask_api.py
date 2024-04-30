@@ -104,11 +104,11 @@ def index():
 
 
     xavas_team_plan = {
-        "XAVAS 1-KAMANDA .": 15000000,
-        "XAVAS 2- KAMANDA .": 15000000,
-        "XAVAS 3- KAMANDA .": 15000000
+        "XAVAS 1-KAMANDA .": 15000,
+        "XAVAS 2- KAMANDA .": 15000,
+        "XAVAS 3- KAMANDA .": 15000
     }
-    default_plan = 17000000  
+    default_plan = 17000  
 
     xavas_sales = {}
     oazis_sales = {}
@@ -120,14 +120,14 @@ def index():
         if seller_name.startswith("XAVAS"):
             plan = xavas_team_plan.get(seller_name, default_plan)
             if seller_name in xavas_sales:
-                xavas_sales[seller_name]['total_sales'] += net_gross_sales
+                xavas_sales[seller_name]['total_sales'] += net_gross_sales/1000
             else:
                 xavas_sales[seller_name] = {'total_sales': net_gross_sales, 'plan': plan, 'percentage': 0}
             xavas_sales[seller_name]['percentage'] = (xavas_sales[seller_name]['total_sales'] / plan) * 100
         else:
             plan = default_plan
             if seller_name in oazis_sales:
-                oazis_sales[seller_name]['total_sales'] += net_gross_sales
+                oazis_sales[seller_name]['total_sales'] += net_gross_sales/1000
             else:
                 oazis_sales[seller_name] = {'total_sales': net_gross_sales, 'plan': plan, 'percentage': 0}
             oazis_sales[seller_name]['percentage'] = (oazis_sales[seller_name]['total_sales'] / plan) * 100
