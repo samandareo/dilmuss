@@ -104,11 +104,11 @@ def index():
 
 
     xavas_team_plan = {
-        "XAVAS 1-KAMANDA .": 15000,
-        "XAVAS 2- KAMANDA .": 15000,
-        "XAVAS 3- KAMANDA .": 15000
+        "XAVAS 1-KAMANDA .": 20000,
+        "XAVAS 2- KAMANDA .": 20000,
+        "XAVAS 3- KAMANDA .": 20000
     }
-    default_plan = 17000  
+    default_plan = 20000  
 
     xavas_sales = {}
     oazis_sales = {}
