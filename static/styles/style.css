@@ -75,11 +75,10 @@ table {
 }
 
 th, td {
-    text-align: left;
     padding: 12px 15px;
     border: 1px solid #ddd;
     height: 80px;
-    padding-left: 50px;/* Adds a border around each cell */
+    text-align: center;
 }
 
 th {
@@ -111,6 +110,12 @@ tr:hover td {
     font-family: "Quantico", sans-serif;
     font-weight: 700;
     font-style: normal;
+}
+
+.time {
+    border: 1px solid #AB8968;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
 
