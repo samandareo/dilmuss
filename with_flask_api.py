@@ -37,7 +37,8 @@ def make_api_request(method,headers, params):
     response = requests.get(URL + method, headers=headers, params=params)
     if response.status_code != 200:
         print('Token eskirgan. Yangilanmoqda...')
-        headers['Authorization'] = 'Bearer ' + get_new_token(URL)
+        new_token = get_new_token(SECRET_TOKEN)
+        headers['Authorization'] = 'Bearer ' + str(new_token)
         response = requests.get(URL + method, headers=headers, params=params)
         print('API request failed: ', response.status_code)
     return response.json()
