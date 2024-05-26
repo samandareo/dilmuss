@@ -39,6 +39,7 @@ def make_api_request(method,headers, params):
         new_token = get_new_token(SECRET_TOKEN)
         headers['Authorization'] = 'Bearer ' + str(new_token)
         response = requests.get(URL + method, headers=headers, params=params)
+    else:
         print('API request failed: ', response.status_code)
     return response.json()
  
