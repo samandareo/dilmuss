@@ -28,6 +28,7 @@ def get_new_token(SECRET_TOKEN):
     }
     try:
         response = requests.post(URL + AUTH_ENDPOINT, headers=headers, data=json.dumps(data))
+        response.raise_for_status()
         new_token = response.json().get('data', {}).get('access_token')
         if new_token:
             return new_token
