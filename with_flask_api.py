@@ -25,11 +25,17 @@ def get_new_token(SECRET_TOKEN):
     data = {
         "secret_token": SECRET_TOKEN
     }
-    response = requests.post(URL + AUTH_ENDPOINT, headers=headers, data=json.dumps(data))
-    if response.status_code == 200:
-        return response.json()['data']['access_token']
-    else:
-        print('Token retrieval failed: ', response.status_code)
+    try:
+        response = requests.post(URL + AUTH_ENDPOINT, headers=headers, data=json.dumps(data))
+        response.raise_for_status()
+        new_token = response.json().get('data', {}).get('access_token')
+        if new_token:
+            return new_token
+        else:
+            logging.error('Token retrieval failed: No access token in response.')
+            return None
+    except requests.exceptions.RequestException as e:
+        logging.error(f'Token retrieval failed: {str(e)}')
         return None
 
 def make_api_request(method,headers, params):
