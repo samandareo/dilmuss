@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import requests
 import json
+import logging
 from datetime import datetime
 
 app = Flask(__name__)
