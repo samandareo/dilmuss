@@ -27,7 +27,6 @@ def get_new_token(SECRET_TOKEN):
     }
     response = requests.post(URL + AUTH_ENDPOINT, headers=headers, data=json.dumps(data))
     if response.status_code == 200:
-        SECRET_TOKEN = response.json()['data']['access_token']
         return response.json()['data']['access_token']
     else:
         print('Token retrieval failed: ', response.status_code)
