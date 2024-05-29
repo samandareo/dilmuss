@@ -81,7 +81,7 @@ def index():
         headers = {
             'accept': ACCEPT_HEADER,
             'Content-Type': CONTENT_TYPE_HEADER,
-            'Authorization': TOKEN_PREFIX + ACCESS_TOKEN
+            'Authorization': TOKEN_PREFIX + access_token
         }
         data = make_api_request(method,headers, params)
         
