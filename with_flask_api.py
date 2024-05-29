@@ -132,6 +132,7 @@ def index():
         return render_template('index.html', oazis_sales=xavas_sales, current_time=interval_time)
     except Exception as e:
         app.logger.error(e)
+        global status
         return render_template('error.html', error_message=status)
 
 
