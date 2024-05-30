@@ -45,12 +45,18 @@ def get_new_token(SECRET_TOKEN):
 
 def make_api_request(method,headers, params):
     response = requests.get(URL + method, headers=headers, params=params)
-    if response.status_code != 200:
+    if response.status_code == 401:
         print('Token eskirgan. Yangilanmoqda...')
         new_token = get_new_token(SECRET_TOKEN)
         headers['Authorization'] = 'Bearer ' + str(new_token)
         response = requests.get(URL + method, headers=headers, params=params)
+    elif response.status_code == 500:
+        global status
+        status = response.status_code
+        print('Serverda xatolik yuz berdi')
+        return None
     return response.json()
+
  
 @app.route('/')
 def index():
