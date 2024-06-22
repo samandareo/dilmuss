@@ -1,7 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import requests
 import json
 from datetime import datetime
+import pysqlite3 as sqlite3
 
 app = Flask(__name__)
 
@@ -61,6 +62,8 @@ def make_api_request(method,headers, params):
 @app.route('/')
 def index():
     try:
+        conn =  sqlite3.connect('database/plan.db')
+        cursor = conn.cursor()
         today_date = datetime.now().date()
         current_time = datetime.now()
     
@@ -104,16 +107,14 @@ def index():
     
         dilmuss_xavas = [entry for entry in data['seller_stats_by_date'] if entry['seller_id'] in xavas_sellers]
     
-    
-        xavas_team_plan = {
-            "56c15498-18f0-4f24-b68f-f68cf790c086": 12000,
-            "613320af-4659-4e36-91ec-644350b39a81": 12000,
-            "10585d36-3f14-4a11-956c-846c9b386c97": 12000,
-            "1b46d22f-41c1-43c4-87cc-0174989949f1": 15000,
-            "d0f947af-1fae-4820-892a-d44d9c819a6d": 15000,
-            "8827e64b-af5a-4ae6-8ae4-8164b2e6e523": 15000,
-            "0a2b39c7-9774-4fe8-a226-f54012aa96f0": 15000
-        }
+        xavas_team_plan = {}
+
+        cursor.execute("SELECT * FROM information")
+        db_information = cursor.fetchall()
+
+        for row in db_information:
+            xavas_team_plan[row[0]] = row[1]
+
     
         xavas_sales = {}
     
@@ -142,6 +143,27 @@ def index():
         global status
         return render_template('error.html', error_message=status)
 
+@app.route('/plan', methods=['GET'])
+def show_plan():
+    conn = sqlite3.connect('database/plan.db')
+    cur = conn.cursor()
+    cur.execute("SELECT id, name, plan FROM information")
+    db_information = cur.fetchall()
+    conn.close()
+    return render_template('plan.html', products=[{'id': id,'name': name, 'plan': plan} for id, name, plan in db_information])
+
+@app.route('/update_plan', methods=['POST'])
+def update_plan():
+    product_id = request.form['update']
+    new_plan = request.form['new_plan']
+
+    conn = sqlite3.connect('database/plan.db')
+    cur = conn.cursor()
+    print(product_id, new_plan)
+    cur.execute(f"UPDATE information SET plan = {new_plan} WHERE id = '{product_id}'")
+    conn.commit()
+    conn.close()
+    return redirect(url_for('show_plan'))
 
 def format_currency(value):
     return "{:,.0f}".format(value)
@@ -149,4 +171,4 @@ def format_currency(value):
 app.jinja_env.filters['currency'] = format_currency
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='192.168.68.130', port=5500)
