@@ -1,25 +1,27 @@
-import pysqlite3 as sqlite3
+import psycopg2
 
-# def create_database_and_table():
-#     conn = sqlite3.connect('users.db')
-#     cursor = conn.cursor()
+conn = psycopg2.connect(
+    host="dpg-cq9433rv2p9s73cd2vng-a.frankfurt-postgres.render.com",
+    database="dilmussdb",
+    user="dilmuss",
+    password="BvYW5Yz8bzsxxvHjzTffgDMvC6hrcRrh",
+    port="5432"
+)
 
-#     cursor.execute('''
-#     CREATE TABLE IF NOT EXISTS responded_users (
-#         user_id INTEGER PRIMARY KEY
-#     )
-#     ''')
+cur = conn.cursor()
 
-#     conn.commit()
-#     conn.close()
+cur.execute("CREATE TABLE IF NOT EXISTS oazis (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS xavas (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS magnit (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS beruniy (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS nazira (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS dressa (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS muddi (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS lady_house (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS paris_nds (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS instyle (id TEXT PRIMARY KEY, plan INTEGER, name TEXT, position TEXT, shift INTEGER, phone TEXT)")
+cur.execute("CREATE TABLE IF NOT EXISTS credentials (id SERIAL PRIMARY KEY, name TEXT, value TEXT)")
 
-
-conn = sqlite3.connect('database/plan.db')
-cursor = conn.cursor()
-
-
-cursor.execute("SELECT * FROM information")
-db_information = cursor.fetchall()
-
-for row in db_information:
-    print(row)
+conn.commit()
+cur.close()
+conn.close()
