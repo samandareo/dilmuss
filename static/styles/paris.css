@@ -1,39 +1,4 @@
-/* table {
-    border-collapse: collapse;
-    width: 100%;
-    color: #588c7e;
-    font-family: monospace;
-    font-size: 25px;
-    text-align: left;
-} */
-/* 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
 
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 15px;
-    text-align: left;
-}
-
-th {
-    background-color: #4F4F4F;
-    color: white;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-} */
 
 .table-container {
     width: 100%;
