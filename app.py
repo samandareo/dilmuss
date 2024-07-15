@@ -349,12 +349,73 @@ def paris():
       
         sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
 
-        return render_template('paris.html', oazis_sales=sales,current_time=interval_time)
+        return render_template('paris.html', sales=sales,current_time=interval_time)
     except Exception as e:
         app.logger.error(e)
         global status
         return render_template('error.html', error_message=status, branch='paris')
+
+# --------------------- DRESSA --------------------- #
+@app.route('/dressa')
+def dressa():
+    try:
+        global conn, cursor
+        data = get_information("198dbb62-12b6-45b2-8bba-fdf829994b50")
+        
+        cursor.execute("SELECT id FROM dressa")
+        db_information = cursor.fetchall()
+        sellers = []
+
+        for row in db_information:
+            sellers.append(row[0])
+
+        dilmuss = [entry for entry in data['seller_stats_by_date'] if entry['seller_id'] in sellers]
     
+        team_plan = {}
+
+        cursor.execute("SELECT * FROM dressa")
+        db_information = cursor.fetchall()
+
+        for row in db_information:
+            team_plan[row[0]] = row[1]
+
+    
+        sales = {}
+    
+
+        for entry in dilmuss:
+            seller_id = entry['seller_id']
+            for row in db_information:
+                if seller_id == row[0]:
+                    seller_name = row[2]
+                    seller_position = row[3]
+                    seller_shift = row[4]
+                    break
+            net_gross_sales = entry['net_gross_sales']
+            
+            if interval_time.hour >= 17 and seller_shift == 2:
+                if seller_id in sellers:
+                    if seller_name not in sales:
+                        sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                    else:
+                        sales[seller_name]['total_sales'] += net_gross_sales/1000
+                    sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+            elif interval_time.hour < 17 and (seller_shift == 1 or seller_shift == 0):
+                if seller_id in sellers:
+                    if seller_name not in sales:
+                        sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                    else:
+                        sales[seller_name]['total_sales'] += net_gross_sales/1000
+                    sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+                    
+      
+        sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
+
+        return render_template('dressa.html', sales=sales,current_time=interval_time)
+    except Exception as e:
+        app.logger.error(e)
+        global status
+        return render_template('error.html', error_message=status, branch='dressa')
     
 @app.route('/login', methods=['GET', 'POST'])
 def login():
