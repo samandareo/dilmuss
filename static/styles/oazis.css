@@ -57,7 +57,7 @@ table, th, td {
 }
 
 th, td {
-    padding: 10px; /* Increased padding for better touch targets */
+    padding: 15px; /* Increased padding for better touch targets */
 
     text-align: center;
     font-size: 1.5em; /* Increased font size */
