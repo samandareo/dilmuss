@@ -102,7 +102,7 @@ def get_information(shop_id):
             'start_date': str(today_date),
             'end_date': str(today_date),
             'page': 1,
-            'limit': 100000,
+            'limit': 10000,
             'shop_ids': f"{shop_id}",
             'currency': 'UZS',
             'detalization': 'hour'
@@ -216,8 +216,8 @@ def xavas():
 def oazis():
     try:
         global conn, cursor
-        data = get_information("5a31a945-7567-437a-8d66-fd355260b6e8")
-
+        data = get_information("a93a6aac-748b-4ee9-a4f3-7498cd1606f6")
+        
         cursor.execute("SELECT id FROM oazis")
         db_information = cursor.fetchall()
         sellers = []
@@ -251,7 +251,6 @@ def oazis():
             net_gross_sales = entry['net_gross_sales']
             
             if interval_time.hour >= 17 and seller_shift == 2:
-                print(f"OK {interval_time.hour}")
                 if seller_position == 'sotuvchi':
                     if seller_id in sellers:
                         if seller_name not in sales:
@@ -267,7 +266,6 @@ def oazis():
                             sales_pr[seller_name]['total_sales'] += net_gross_sales/1000
                         sales_pr[seller_name]['percentage'] = (sales_pr[seller_name]['total_sales'] / team_plan[seller_id]) * 100
             elif interval_time.hour < 17 and (seller_shift == 1 or seller_shift == 0):
-                print(f"OK {interval_time.hour}")
                 if seller_position == 'sotuvchi':
                     if seller_id in sellers:
                         if seller_name not in sales:
@@ -287,14 +285,12 @@ def oazis():
       
         sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
         sales_pr = dict(sorted(sales_pr.items(), key=lambda item: item[1]['total_sales'], reverse=True))
-        return render_template('oazis.html', oazis_sales=sales, oazis_sales_2=sales_pr,current_time=interval_time)
-
+        return render_template('xavas.html', oazis_sales=sales, oazis_sales_2=sales_pr,current_time=interval_time)
     except Exception as e:
         app.logger.error(e)
         global status
         return render_template('error.html', error_message=status, branch='oazis')
-
-
+    
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
