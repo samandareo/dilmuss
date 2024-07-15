@@ -285,7 +285,7 @@ def oazis():
       
         sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
         sales_pr = dict(sorted(sales_pr.items(), key=lambda item: item[1]['total_sales'], reverse=True))
-        return render_template('xavas.html', oazis_sales=sales, oazis_sales_2=sales_pr,current_time=interval_time)
+        return render_template('oazis.html', oazis_sales=sales, oazis_sales_2=sales_pr,current_time=interval_time)
     except Exception as e:
         app.logger.error(e)
         global status
