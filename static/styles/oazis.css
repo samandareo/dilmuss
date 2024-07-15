@@ -71,14 +71,14 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ddd;
 }
 tr:nth-child(odd) {
     background-color: #c7996d;
 }
 
 tr:hover {
-    background-color: #ddd;
+    background-color: #f2f2f2;
 }
 
 .carousel {

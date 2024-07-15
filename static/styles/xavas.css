@@ -56,9 +56,9 @@ table, th, td {
 }
 
 th, td {
-    padding: 20px; /* Increased padding for better touch targets */
+    padding: 15px; /* Increased padding for better touch targets */
     text-align: center;
-    font-size: 1.7em; /* Increased font size */
+    font-size: 1.6em; /* Increased font size */
     font-weight:600;
 }
 
@@ -68,14 +68,14 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #ddd;
 }
 tr:nth-child(odd) {
     background-color: #c7996d;
 }
 
 tr:hover {
-    background-color: #ddd;
+    background-color: #f2f2f2;
 }
 
 .carousel {
