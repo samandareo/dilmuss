@@ -606,6 +606,148 @@ def instyle():
         return render_template('error.html', error_message=status, branch='instyle')
     
 
+# --------------------- Muddi --------------------- #
+@app.route('/muddi')
+def muddi():
+    try:
+        global conn, cursor
+        data = get_information("0e0ec5e4-3ba0-4a73-82ae-7877f4789cf1")
+        
+        cursor.execute("SELECT id FROM muddi")
+        db_information = cursor.fetchall()
+        sellers = []
+
+        for row in db_information:
+            sellers.append(row[0])
+
+        dilmuss = [entry for entry in data['seller_stats_by_date'] if entry['seller_id'] in sellers]
+    
+        team_plan = {}
+
+        cursor.execute("SELECT * FROM muddi")
+        db_information = cursor.fetchall()
+
+        for row in db_information:
+            team_plan[row[0]] = row[1]
+
+    
+        sales = {}
+    
+
+        for entry in dilmuss:
+            seller_id = entry['seller_id']
+            for row in db_information:
+                if seller_id == row[0]:
+                    seller_name = row[2]
+                    seller_position = row[3]
+                    seller_shift = row[4]
+                    break
+            net_gross_sales = entry['net_gross_sales']
+            
+            if interval_time.hour >= 17 and seller_shift == 2:
+                if seller_id in sellers:
+                    if seller_name not in sales:
+                        sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                    else:
+                        sales[seller_name]['total_sales'] += net_gross_sales/1000
+                    sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+            elif interval_time.hour < 17 and (seller_shift == 1 or seller_shift == 0):
+                if seller_id in sellers:
+                    if seller_name not in sales:
+                        sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                    else:
+                        sales[seller_name]['total_sales'] += net_gross_sales/1000
+                    sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+                    
+      
+        sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
+
+        return render_template('muddi.html', sales=sales,current_time=interval_time)
+    except Exception as e:
+        app.logger.error(e)
+        global status
+        return render_template('error.html', error_message=status, branch='muddi')
+
+# --------------------- Beruniy --------------------- #
+@app.route('/beruniy')
+def beruniy():
+    try:
+        global conn, cursor
+        data = get_information("5d9949c0-eb71-49e1-888d-8784f106f8dd")
+        
+        cursor.execute("SELECT id FROM beruniy")
+        db_information = cursor.fetchall()
+        sellers = []
+
+        for row in db_information:
+            sellers.append(row[0])
+
+        dilmuss = [entry for entry in data['seller_stats_by_date'] if entry['seller_id'] in sellers]
+    
+        team_plan = {}
+
+        cursor.execute("SELECT * FROM beruniy")
+        db_information = cursor.fetchall()
+
+        for row in db_information:
+            team_plan[row[0]] = row[1]
+
+    
+        sales = {}
+        sales_pr = {}
+    
+
+        for entry in dilmuss:
+            seller_id = entry['seller_id']
+            for row in db_information:
+                if seller_id == row[0]:
+                    seller_name = row[2]
+                    seller_position = row[3]
+                    seller_shift = row[4]
+                    break
+            net_gross_sales = entry['net_gross_sales']
+            
+            if interval_time.hour >= 17 and seller_shift == 2:
+                if seller_position == 'sotuvchi':
+                    if seller_id in sellers:
+                        if seller_name not in sales:
+                            sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                        else:
+                            sales[seller_name]['total_sales'] += net_gross_sales/1000
+                        sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+                elif seller_position == 'romol':
+                    if seller_id in sellers:
+                        if seller_name not in sales_pr:
+                            sales_pr[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                        else:
+                            sales_pr[seller_name]['total_sales'] += net_gross_sales/1000
+                        sales_pr[seller_name]['percentage'] = (sales_pr[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+            elif interval_time.hour < 17 and (seller_shift == 1 or seller_shift == 0):
+                if seller_position == 'sotuvchi':
+                    if seller_id in sellers:
+                        if seller_name not in sales:
+                            sales[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                        else:
+                            sales[seller_name]['total_sales'] += net_gross_sales/1000
+                        sales[seller_name]['percentage'] = (sales[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+                elif seller_position == 'romol':
+                    if seller_id in sellers:
+                        if seller_name not in sales_pr:
+                            sales_pr[seller_name] = {'total_sales': net_gross_sales, 'plan': team_plan[seller_id], 'percentage': 0}
+                        else:
+                            sales_pr[seller_name]['total_sales'] += net_gross_sales/1000
+                        sales_pr[seller_name]['percentage'] = (sales_pr[seller_name]['total_sales'] / team_plan[seller_id]) * 100
+    
+        
+      
+        sales = dict(sorted(sales.items(), key=lambda item: item[1]['total_sales'], reverse=True))
+        sales_pr = dict(sorted(sales_pr.items(), key=lambda item: item[1]['total_sales'], reverse=True))
+        return render_template('beruniy.html', sales=sales, sales_2=sales_pr,current_time=interval_time)
+    except Exception as e:
+        app.logger.error(e)
+        global status
+        return render_template('error.html', error_message=status, branch='beruniy')
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -620,6 +762,7 @@ def login():
             error = 'Username yoki parol xato! Iltimos qayta urinib ko\'ring!'
             return render_template('login.html', error=error, username=username)
     return render_template('login.html', error=None)
+
 
 @app.route('/plan')
 def show_plan():
