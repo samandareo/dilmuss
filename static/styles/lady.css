@@ -1,11 +1,86 @@
 
 
+@import url('https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Roboto&display=swap');
+
+
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.dashboard
+{
+    display: grid;
+    grid-template-columns: 25vw  75vw;
+    /* grid-template-rows: 20vw  80vw; */
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    
+}
+
+.dashboard .sidebar
+{
+    position:fixed;
+    top:0;
+    width: 25vw;
+    height: 100vh;
+    display: grid;
+    grid-column:1/2;
+    grid-template-rows: 50% 50%;
+    background-color:black;
+    float:left;
+}
+
+
+
+.dashboard .sidebar .logo
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    width: 250px;
+    height: 250px;
+    margin: auto;
+}
+
+.dashboard .sidebar .time-container
+{
+    color: #D72298;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.time-container
+{
+    font-family: "Quantico", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.time {
+    border: 2px solid #D72298;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+
 .table-container {
     width: 100%;
     padding: 20px;
     background-color: white;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    margin: 20px;
+    width: 72vw; /* Adjusted width to accommodate remaining space after sidebar */
+    grid-column: 2/2; /* Changed grid-column to 2/3 for the main content */
+    float:right;
 
 }
 
@@ -18,12 +93,12 @@ table {
 
 table, th, td {
     border: 5px solid white;
+    border-collapse: collapse;
     
 }
 
 th, td {
     padding: 20px; /* Increased padding for better touch targets */
-
     text-align: center;
     font-size: 1.7em; /* Increased font size */
     font-weight:600;
@@ -31,19 +106,22 @@ th, td {
 
 
 th {
-    background-color: #4F4F4F;
-    color: white;
+    background-color: #D16B93;
+    color: #FFFFFF;
+    padding: 10px;
 }
 
 tr:nth-child(even) {
-    background-color: #ddd;
+    background-color: #F8C9D6;
+    color: #A83870;
 }
 tr:nth-child(odd) {
-    background-color: #c7996d;
+    background-color: #F8C9D6;
+    color: #A83870;
 }
 
 tr:hover {
-    background-color: #f2f2f2;
+    background-color: #E29BAA;
 }
 
 .carousel {
@@ -60,4 +138,57 @@ tr:hover {
 
 .carousel-item.active {
     display: block;
+}
+
+.dashboard .sidebar {
+    background-color: #FADFF0;
+}
+
+
+.logo > img{
+    width: 100%;
+}
+
+@media only screen and (max-width: 1024px) {
+    .dashboard {
+        grid-template-columns: 20vw 80vw;
+
+    }
+
+    .dashboard .sidebar .logo {
+        width: 150px!important;
+        height: 150px!important;
+        margin: 0;
+    }
+
+    .logo > img{
+        width: 100%;
+    }
+
+    .dashboard .sidebar {
+        position: fixed;
+        top: 0;
+        width: 20vw;
+        height: 100vh;
+        grid-column: 1/2;
+        float: left;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* row-gap: 100px; */
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .dashboard .table-container {
+        width: 76vw;
+        margin: 20px;
+        float: right;
+        font-size: 8px;
+    }
+
+    .time-container {
+        font-size: 12px!important;
+        margin-bottom: 50px;
+    }
 }
