@@ -746,6 +746,7 @@ def beruniy():
     except Exception as e:
         app.logger.error(e)
         global status
+        print(status)
         return render_template('error.html', error_message=status, branch='beruniy')
 
 @app.route('/login', methods=['GET', 'POST'])
