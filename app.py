@@ -45,7 +45,7 @@ def get_new_token(SECRET_TOKEN):
         new_token = response.json().get('data', {}).get('access_token')
 
         if new_token:
-            cursor.execute("UPDATE credentials SET value = ? WHERE name = 'token'", (new_token,))
+            cursor.execute(f"UPDATE credentials SET value = '{new_token}' WHERE name = 'token'")
             conn.commit()
 
         
