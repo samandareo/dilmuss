@@ -6,7 +6,7 @@ import pysqlite3 as sqlite3
 import psycopg2
 
 app = Flask(__name__)
-app.secret_key = 'dilmuss'
+app.secret_key = ''
 
 URL = 'https://api-admin.billz.ai/v1'
 AUTH_ENDPOINT = '/auth/login'
@@ -16,16 +16,16 @@ TOKEN_PREFIX = 'Bearer '
 global access_token, status
 status = "404"
 access_token = ""
-SECRET_TOKEN = "ecdd4e117df3f684ba2bfc55234bfdcc8847b1e914a4904f2e348857db1d694b629fef32b909e4f3a972c37bcf6fab0c41a53bd720a5cc01e4196fd01db9c17fa664c73948d5c730703bf4c0f4c17dd45e8876f91d794da74147f4752b36125d7423bd074c7ff79d8d2c73e7e4aefb9425c118a59dbd37c7"
+SECRET_TOKEN = "" #serve as refresh token
 from credentials import users
 
 # CONNECTION TO DATABASE
 global conn, cursor
 conn = psycopg2.connect(
-    host="dpg-cq9433rv2p9s73cd2vng-a.frankfurt-postgres.render.com",
-    database="dilmussdb",
-    user="dilmuss",
-    password="BvYW5Yz8bzsxxvHjzTffgDMvC6hrcRrh",
+    host="host",
+    database="dbname",
+    user="user",
+    password="password",
     port="5432"
 )
 cursor = conn.cursor()
