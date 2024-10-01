@@ -8,7 +8,7 @@ import psycopg2
 app = Flask(__name__)
 app.secret_key = ''
 
-URL = 'https://api-admin.billz.ai/v1'
+URL = '' # your checkout(kassa) programm api-url
 AUTH_ENDPOINT = '/auth/login'
 ACCEPT_HEADER = 'application/json'
 CONTENT_TYPE_HEADER = 'application/json'
