@@ -1,10 +1,10 @@
 import psycopg2
 
 conn = psycopg2.connect(
-    host="dpg-cq9433rv2p9s73cd2vng-a.frankfurt-postgres.render.com",
-    database="dilmussdb",
-    user="dilmuss",
-    password="BvYW5Yz8bzsxxvHjzTffgDMvC6hrcRrh",
+    host="host",
+    database="dbname",
+    user="user",
+    password="password",
     port="5432"
 )
 
